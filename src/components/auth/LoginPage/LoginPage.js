@@ -43,12 +43,7 @@ function LoginPage({ onLogin }) {
     <div className="loginPage">
       <h1 className="loginPage-title">Log in to Twitter</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="email"
-          value={email}
-          onChange={handleChange}
-        />
+        <input type="text" name="email" value={email} onChange={handleChange} />
         <input
           type="password"
           name="password"
@@ -62,16 +57,6 @@ function LoginPage({ onLogin }) {
           value="remember"
           onChange={handleChange}
         />
-        <select value="2" onChange={event => console.log(event)}>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
-        </select>
-        <input
-          type="file"
-          onChange={event => console.log(event.target.files[0])}
-        />
-
         <Button
           type="submit"
           variant="primary"

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const accentColor = 'rgb(29, 161, 242)';
+const accentColor = 'rgb(0, 187, 45)';
 
 const Button = styled.button`
   align-items: center;
@@ -28,7 +28,7 @@ const Button = styled.button`
   &:hover {
     background-color: ${props =>
       props.variant === 'primary'
-        ? 'rgb(26, 145, 218)'
+        ? 'rgb(0, 143, 57)'
         : 'rgba(29, 161, 242, 0.1)'};
   }
 `;

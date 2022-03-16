@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import Button from '../../common/Button';
 import { login } from '../service';
+import AuthContext from '../context';
 
-function LoginPage({ onLogin }) {
+function LoginPage() {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -10,8 +11,10 @@ function LoginPage({ onLogin }) {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const {handleLogin:onLogin} = useContext(AuthContext);
 
   const { email, password, remember } = credentials;
+
 
   const handleChange = event => {
     setCredentials(credentials => ({

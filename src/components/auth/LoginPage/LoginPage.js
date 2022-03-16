@@ -1,9 +1,22 @@
-import { useState, useContext } from 'react';
+import {
+  useState,
+  useContext,
+  useRef,
+  useNavigate,
+  useLocation,
+  useEffect,
+} from 'react';
 import Button from '../../common/Button';
+import FormField from '../../common/FormField';
 import { login } from '../service';
 import AuthContext from '../context';
 
+import './LoginPage.css';
+
 function LoginPage() {
+  const ref = useRef(null);
+  /*   const navigate = useNavigate();
+  const location = useLocation(); */
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -11,10 +24,13 @@ function LoginPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const {handleLogin:onLogin} = useContext(AuthContext);
+  const { handleLogin: onLogin } = useContext(AuthContext);
+
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
 
   const { email, password, remember } = credentials;
-
 
   const handleChange = event => {
     setCredentials(credentials => ({
@@ -36,6 +52,8 @@ function LoginPage() {
       await login(credentials);
       setIsLoading(false);
       onLogin();
+      /*       const from = location.state?.from?.pathname || '/';
+      navigate(from, { replace: true }); */
     } catch (error) {
       setError(error);
       setIsLoading(false);
@@ -44,15 +62,26 @@ function LoginPage() {
 
   return (
     <div className="loginPage">
-      <h1 className="loginPage-title">Log in to Twitter</h1>
+      <h1 className="loginPage-title">Log in to AdvertPop</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="email" value={email} onChange={handleChange} />
-        <input
+        <FormField
+          type="email"
+          name="email"
+          label="email"
+          className="loginForm-field"
+          value={email}
+          onChange={handleChange}
+          ref={ref}
+        />
+        <FormField
           type="password"
           name="password"
+          label="password"
+          className="loginForm-field"
           value={password}
           onChange={handleChange}
         />
+
         <input
           type="checkbox"
           name="remember"
@@ -60,7 +89,10 @@ function LoginPage() {
           value="remember"
           onChange={handleChange}
         />
+        <label>Recordar contraseña</label>
+
         <Button
+          className="loginForm-submit"
           type="submit"
           variant="primary"
           disabled={!email || !password || isLoading}
@@ -69,7 +101,7 @@ function LoginPage() {
         </Button>
       </form>
       {error && (
-        <div onClick={resetError} style={{ color: 'red' }}>
+        <div onClick={resetError} className="loginPage-error">
           {error.message}
         </div>
       )}

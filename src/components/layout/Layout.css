@@ -7,10 +7,9 @@
 }
 
 .layout-main {
-  border-left-width: 1px;
-  border-right-width: 1px;
-  margin: 0 auto;
-  max-width: 660px;
+  margin-left: 5%;
+  margin-right: 40%;
+  max-width: 100%;
   min-height: calc(100vh - 128px);
 }
 

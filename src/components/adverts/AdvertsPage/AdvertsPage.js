@@ -9,8 +9,8 @@ import './AdvertsPage.css';
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
-    <p>Be the first twitter!</p>
-    <Button as={Link} to="/tweets/new" variant="primary">
+    <p>Be the first advert!</p>
+    <Button as={Link} to="/adverts/new" variant="primary">
       Tweet
     </Button>
   </div>

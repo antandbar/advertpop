@@ -4,6 +4,7 @@ import LoginPage from './components/auth/LoginPage/LoginPage';
 import { AuthContextProvider } from './components/auth/context';
 import Layout from './components/layout/Layout';
 import AdvertsPage from './components/adverts/AdvertsPage/AdvertsPage';
+import RequireAuth from './components/auth/RequireAuth';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -22,7 +23,14 @@ function App({ isInitiallyLogged }) {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/adverts" element={<Layout />}>
-            <Route index element={<AdvertsPage/>} />
+            <Route
+              index
+              element={
+                <RequireAuth>
+                  <AdvertsPage />
+                </RequireAuth>
+              }
+            />
           </Route>
 
           <Route path="/" element={<Navigate to="/adverts" />} />

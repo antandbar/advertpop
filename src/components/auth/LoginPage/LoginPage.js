@@ -1,11 +1,5 @@
-import {
-  useState,
-  useContext,
-  useRef,
-  useNavigate,
-  useLocation,
-  useEffect,
-} from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../common/Button';
 import FormField from '../../common/FormField';
 import { login } from '../service';
@@ -15,8 +9,8 @@ import './LoginPage.css';
 
 function LoginPage() {
   const ref = useRef(null);
-  /*   const navigate = useNavigate();
-  const location = useLocation(); */
+  const navigate = useNavigate();
+  const location = useLocation();
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -52,8 +46,8 @@ function LoginPage() {
       await login(credentials);
       setIsLoading(false);
       onLogin();
-      /*       const from = location.state?.from?.pathname || '/';
-      navigate(from, { replace: true }); */
+      const from = location.state?.from?.pathname || '/';
+      navigate(from, { replace: true });
     } catch (error) {
       setError(error);
       setIsLoading(false);

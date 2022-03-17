@@ -2,14 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
+## Database Script
 
 ### `$ docker run --name nodepop-api -dp 3001:3001 -v nodepop-api-data:/home/node/app/data -v nodepop-api-uploads:/home/node/app/uploads davidjj76/nodepop-api`
 
 Runs the database in the development mode.\
 Port: 3001
+
+## Available Scripts
+
+In the project directory, you can run:
 
 ### `npm start`
 

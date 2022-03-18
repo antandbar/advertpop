@@ -1,0 +1,11 @@
+
+.inputSearch-input {
+  margin-left: 10px;
+  border: 0.1px rgb(101, 119, 134) solid;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.inputSearch-input:focus{
+    outline: none;
+  }

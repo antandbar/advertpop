@@ -11,3 +11,7 @@
 .filter-body {
     margin-left: 30px; 
 }
+.filter-submit {
+    height: 30px;
+    width: 70px;
+}

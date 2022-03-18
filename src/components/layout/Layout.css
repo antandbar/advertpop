@@ -13,14 +13,6 @@
   min-height: calc(100vh - 128px);
 }
 
-.layout-title {
-  align-items: center;
-  border-bottom-width: 1px;
-  display: flex;
-  height: 52px;
-  padding: 0 15px;
-}
-
 .layout-footer {
   align-items: center;
   border-top-width: 1px;

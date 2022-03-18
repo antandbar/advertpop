@@ -4,8 +4,10 @@ import Page from '../../layout/Page';
 import Button from '../../common/Button';
 import { getAdverts } from '../service';
 import Advert from './Advert';
+import AdvertsFilter from './AdvertsFilter';
 
 import './AdvertsPage.css';
+import Title from '../../common/Title';
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
@@ -16,16 +18,23 @@ const EmptyList = () => (
   </div>
 );
 
-const AdvertsPage = () => {
+const AdvertsPage = ({ color }) => {
   const [adverts, setAdverts] = useState([]);
+  const [nameFilter, setNameFilter] = useState('');
+
+  const changeNameFilter = name => {
+    setNameFilter(name);
+  };
 
   useEffect(() => {
-    getAdverts().then(adverts => setAdverts(adverts));
-  }, []);
+    getAdverts(nameFilter).then(adverts => setAdverts(adverts));
+  }, [nameFilter]);
 
   return (
-    <Page title="Anuncios">
     <div>
+      <Title title={'Anuncios'} />
+      <AdvertsFilter changeNameFilter={changeNameFilter}></AdvertsFilter>
+      {/* {console.log(color)} */}
       {adverts.length ? (
         <ul>
           {adverts.map(advert => (
@@ -40,7 +49,6 @@ const AdvertsPage = () => {
         <EmptyList />
       )}
     </div>
-    </Page>
   );
 };
 

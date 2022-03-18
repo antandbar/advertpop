@@ -6,7 +6,7 @@ const InputSearch = ({ className, label, ...props }) => {
       <label className="inputSearch-label">
         <span>{label}</span>
         <input className="inputSearch-input"
-          {...props}
+          {...props} 
         />
       </label>
     </div>

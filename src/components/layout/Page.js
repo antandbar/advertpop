@@ -1,11 +1,11 @@
-import { Fragment } from 'react';
-import AdvertsFilter from '../adverts/AdvertsPage/AdvertsFilter';
+import React, { Fragment } from 'react';
+import Title from '../common/Title';
+import '../common/Title.css';
 
 function Page({ title, children }) {
   return (
     <Fragment>
-      <h2 className="layout-title">{title}</h2>
-      <AdvertsFilter></AdvertsFilter>
+      <Title className="title" title={title}></Title>
       <section>{children}</section>
     </Fragment>
   );

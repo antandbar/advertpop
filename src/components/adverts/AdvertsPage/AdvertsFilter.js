@@ -1,16 +1,26 @@
-import React from 'react';
+import { useEffect } from 'react';
 import InputSearch from '../../common/InputSearch';
 import './AdvertsFilter.css';
 
-const AdvertsFilter = () => {
+const AdvertsFilter = ({changeNameFilter}) => {
+
+    useEffect(() => {
+        /* getAdverts().then(adverts => setAdverts(adverts)); */
+      }, []);
+
+      const handleInputName = (e) => {
+          changeNameFilter(e.target.value)
+          
+      }
+
   return <div className='filter'>
       <div className='filter-title'>
           <h4>Filtros</h4>
       </div>
       <div className='filter-body'>
-      <InputSearch label={"Nombre"}></InputSearch>
+      <InputSearch onChange={handleInputName} label={"Nombre"}></InputSearch>
       </div>
-  </div>;
+  </div>
 };
 
 export default AdvertsFilter;

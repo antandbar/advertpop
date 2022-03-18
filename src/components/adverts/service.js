@@ -2,9 +2,9 @@ import client from '../../api/client';
 
 const advertsBaseUrl = '/api/v1/adverts';
 
-export const getAdverts = () => {
+export const getAdverts = (name) => {
   //const url = `${advertsBaseUrl}?_expand=user&_embed=likes&_sort=updatedAt&_order=desc`;
-  const url = `${advertsBaseUrl}`;
+  const url = `${advertsBaseUrl}?name=${name}`;
   return client.get(url);
 };
 

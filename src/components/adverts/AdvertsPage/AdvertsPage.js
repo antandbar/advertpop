@@ -4,6 +4,7 @@ import Button from '../../common/Button';
 import { getAdverts } from '../service';
 import Advert from './Advert';
 import AdvertsFilter from './AdvertsFilter';
+import Page from '../../layout/Page';
 
 import './AdvertsPage.css';
 import Title from '../../common/Title';
@@ -32,6 +33,7 @@ const AdvertsPage = () => {
 
   useEffect(() => {
     query();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const query = () => {
@@ -39,29 +41,29 @@ const AdvertsPage = () => {
   };
 
   return (
-    <div>
-      <Title title={'Anuncios'} />
-
-      {adverts.length || isFilter ? (
-        <Fragment>
-          <AdvertsFilter
-            changeNameFilter={changeNameFilter}
-            sendAllFilters={sendAllFilters}
-          ></AdvertsFilter>
-          <ul>
-            {adverts.map(advert => (
-              <li key={advert.id}>
-                {/* <Link to={`/tweets/${tweet.id}`}> */}
-                <Advert {...advert} />
-                {/* </Link> */}
-              </li>
-            ))}
-          </ul>
-        </Fragment>
-      ) : (
-        <EmptyList />
-      )}
-    </div>
+    <Page title="Anuncios">
+      <div>
+        {adverts.length || isFilter ? (
+          <Fragment>
+            <AdvertsFilter
+              changeNameFilter={changeNameFilter}
+              sendAllFilters={sendAllFilters}
+            ></AdvertsFilter>
+            <ul>
+              {adverts.map(advert => (
+                <li key={advert.id}>
+                  {/* <Link to={`/tweets/${tweet.id}`}> */}
+                  <Advert {...advert} />
+                  {/* </Link> */}
+                </li>
+              ))}
+            </ul>
+          </Fragment>
+        ) : (
+          <EmptyList />
+        )}
+      </div>
+    </Page>
   );
 };
 

@@ -1,32 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../common/Button';
 import InputRadio from '../../common/inputRadio';
 import InputSearch from '../../common/InputSearch';
+import SliderBar from '../../common/PriceSliderBar';
 import './AdvertsFilter.css';
 
-const AdvertsFilter = ({ changeNameFilter, sendAllFilters, changeIsSaleFilter }) => {
+const AdvertsFilter = ({
+  changeNameFilter,
+  sendAllFilters,
+  changeIsSaleFilter,
+  changeRangeFilter
+}) => {
   useEffect(() => {
     /* getAdverts().then(adverts => setAdverts(adverts)); */
   }, []);
+  const [val, setVal] = useState([3000, 6000]);
 
   const handleInputName = e => {
     changeNameFilter(e.target.value);
   };
   const handleInputBuySell = e => {
     changeIsSaleFilter(e.target.value);
-  
   };
   const sendFilters = e => {
     e.preventDefault();
     sendAllFilters();
   };
 
-  const saleObjet = {
-    false:"compra",
-    true:"venta",
-    all: "todos"
+  const updateRange = (e, data) => {
+    setVal(data);
+    changeRangeFilter(data);
+  };
 
-  }
+  const saleObjet = {
+    false: 'compra',
+    true: 'venta',
+    all: 'todos',
+  };
 
   return (
     <div className="filter">
@@ -39,7 +49,14 @@ const AdvertsFilter = ({ changeNameFilter, sendAllFilters, changeIsSaleFilter })
           onChange={handleInputBuySell}
           label={'Compra/Venta'}
           valueObjet={saleObjet}
-        ></InputRadio>
+        />
+        <SliderBar
+          label={'Rango de precios'}
+          maxSelected={6000}
+          minSelected={3000}
+          onChange={updateRange}
+          value={val}
+        />
         <Button
           className="filter-submit"
           variant="primary"

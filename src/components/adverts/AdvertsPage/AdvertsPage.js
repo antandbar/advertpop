@@ -20,6 +20,7 @@ const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([]);
   const [nameFilter, setNameFilter] = useState('');
   const [isSaleFilter, setIsSaleFilter] = useState('');
+  const [rangeFilter, setRangeFilter] = useState('');
   const [isFilter, setIsFilter] = useState('all');
 
   const changeNameFilter = name => {
@@ -27,6 +28,9 @@ const AdvertsPage = () => {
   };
   const changeIsSaleFilter = isSale => {
     setIsSaleFilter(isSale);
+  };
+  const changeRangeFilter = range => {
+    setRangeFilter(range);
   };
   const sendAllFilters = () => {
     query();
@@ -39,7 +43,7 @@ const AdvertsPage = () => {
   }, []);
 
   const query = () => {
-    getAdverts(nameFilter, isSaleFilter).then(adverts => setAdverts(adverts));
+    getAdverts(nameFilter, isSaleFilter, rangeFilter).then(adverts => setAdverts(adverts));
   };
 
   return (
@@ -51,6 +55,7 @@ const AdvertsPage = () => {
               changeNameFilter={changeNameFilter}
               sendAllFilters={sendAllFilters}
               changeIsSaleFilter={changeIsSaleFilter}
+              changeRangeFilter = {changeRangeFilter}
             ></AdvertsFilter>
             <ul>
               {adverts.map(advert => (

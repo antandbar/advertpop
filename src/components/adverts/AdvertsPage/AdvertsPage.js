@@ -5,9 +5,7 @@ import { getAdverts } from '../service';
 import Advert from './Advert';
 import AdvertsFilter from './AdvertsFilter';
 import Page from '../../layout/Page';
-
 import './AdvertsPage.css';
-import Title from '../../common/Title';
 
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
@@ -21,10 +19,14 @@ const EmptyList = () => (
 const AdvertsPage = () => {
   const [adverts, setAdverts] = useState([]);
   const [nameFilter, setNameFilter] = useState('');
-  const [isFilter, setIsFilter] = useState(false);
+  const [isSaleFilter, setIsSaleFilter] = useState('');
+  const [isFilter, setIsFilter] = useState('all');
 
   const changeNameFilter = name => {
     setNameFilter(name);
+  };
+  const changeIsSaleFilter = isSale => {
+    setIsSaleFilter(isSale);
   };
   const sendAllFilters = () => {
     query();
@@ -37,7 +39,7 @@ const AdvertsPage = () => {
   }, []);
 
   const query = () => {
-    getAdverts(nameFilter).then(adverts => setAdverts(adverts));
+    getAdverts(nameFilter, isSaleFilter).then(adverts => setAdverts(adverts));
   };
 
   return (
@@ -48,6 +50,7 @@ const AdvertsPage = () => {
             <AdvertsFilter
               changeNameFilter={changeNameFilter}
               sendAllFilters={sendAllFilters}
+              changeIsSaleFilter={changeIsSaleFilter}
             ></AdvertsFilter>
             <ul>
               {adverts.map(advert => (

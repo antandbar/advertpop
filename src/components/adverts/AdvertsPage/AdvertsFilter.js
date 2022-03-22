@@ -3,22 +3,36 @@ import Button from '../../common/Button';
 import InputRadio from '../../common/inputRadio';
 import InputSearch from '../../common/InputSearch';
 import SliderBar from '../../common/PriceSliderBar';
+import TextArea from '../../common/MultiSelector';
+import { getTags } from '../service';
 import './AdvertsFilter.css';
 
 const AdvertsFilter = ({
   changeNameFilter,
   sendAllFilters,
   changeIsSaleFilter,
-  changeRangeFilter
+  changeRangeFilter,
+  changeMultiSelector,
 }) => {
+  const [range, setRange] = useState([0, 10000]);
+  const [tags, setTags] = useState([]);
+
   useEffect(() => {
-    /* getAdverts().then(adverts => setAdverts(adverts)); */
+    getTags().then(tags => setTags(tags));
   }, []);
-  const [val, setVal] = useState([3000, 6000]);
 
   const handleInputName = e => {
     changeNameFilter(e.target.value);
   };
+
+  const handleMultiSelector = e => {
+    let valueMultiSelector = Array.from(
+      e.target.selectedOptions,
+      option => option.value,
+    );
+    changeMultiSelector(valueMultiSelector);
+  };
+
   const handleInputBuySell = e => {
     changeIsSaleFilter(e.target.value);
   };
@@ -28,7 +42,7 @@ const AdvertsFilter = ({
   };
 
   const updateRange = (e, data) => {
-    setVal(data);
+    setRange(data);
     changeRangeFilter(data);
   };
 
@@ -55,8 +69,9 @@ const AdvertsFilter = ({
           maxSelected={6000}
           minSelected={3000}
           onChange={updateRange}
-          value={val}
+          value={range}
         />
+        <TextArea tags={tags} handleMultiSelector={handleMultiSelector} />
         <Button
           className="filter-submit"
           variant="primary"

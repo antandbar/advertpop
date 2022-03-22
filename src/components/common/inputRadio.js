@@ -1,5 +1,3 @@
-//import './InputSearch.css';
-
 const InputRadio = ({ className, label, valueObjet, ...props }) => {
   return (
     <div className={className}>
@@ -7,19 +5,9 @@ const InputRadio = ({ className, label, valueObjet, ...props }) => {
         <span>{label}</span>
       </label>
       <div>
-        <input
-          type="radio"
-          value={true}
-          name="inputRadio"
-          {...props}
-        />
+        <input type="radio" value={true} name="inputRadio" {...props} />
         {valueObjet.true}
-        <input
-          type="radio"
-          value={false}
-          name="inputRadio"
-          {...props}
-        />
+        <input type="radio" value={false} name="inputRadio" {...props} />
         {valueObjet.false}
         <input type="radio" value="" name="inputRadio" {...props} />
         {valueObjet.all}

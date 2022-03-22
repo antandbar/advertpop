@@ -22,6 +22,7 @@ const AdvertsPage = () => {
   const [isSaleFilter, setIsSaleFilter] = useState('');
   const [rangeFilter, setRangeFilter] = useState('');
   const [isFilter, setIsFilter] = useState('all');
+  const [multiSelectorFilter, setMultiSelectorFilter] = useState([]);
 
   const changeNameFilter = name => {
     setNameFilter(name);
@@ -31,6 +32,9 @@ const AdvertsPage = () => {
   };
   const changeRangeFilter = range => {
     setRangeFilter(range);
+  };
+  const changeMultiSelector = multiSelector => {
+    setMultiSelectorFilter(multiSelector);
   };
   const sendAllFilters = () => {
     query();
@@ -43,7 +47,7 @@ const AdvertsPage = () => {
   }, []);
 
   const query = () => {
-    getAdverts(nameFilter, isSaleFilter, rangeFilter).then(adverts => setAdverts(adverts));
+    getAdverts(nameFilter, isSaleFilter, rangeFilter, multiSelectorFilter).then(adverts => setAdverts(adverts));
   };
 
   return (
@@ -56,7 +60,8 @@ const AdvertsPage = () => {
               sendAllFilters={sendAllFilters}
               changeIsSaleFilter={changeIsSaleFilter}
               changeRangeFilter = {changeRangeFilter}
-            ></AdvertsFilter>
+              changeMultiSelector = {changeMultiSelector}
+            />
             <ul>
               {adverts.map(advert => (
                 <li key={advert.id}>

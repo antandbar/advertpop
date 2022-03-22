@@ -58,23 +58,30 @@ const AdvertsFilter = ({
         <h4>Filtros</h4>
       </div>
       <div className="filter-body">
-        <InputSearch onChange={handleInputName} label={'Nombre'} className="filter-item"></InputSearch>
+        <InputSearch
+          onChange={handleInputName}
+          label={'Nombre'}
+          className="filter-item"
+        ></InputSearch>
         <InputRadio
           onChange={handleInputBuySell}
           label={'Compra/Venta'}
-          valueObjet={saleObjet} className="filter-item"
+          valueObjet={saleObjet}
+          className="filter-item"
         />
         <SliderBar
           label={'Rango de precios'}
           maxSelected={6000}
           minSelected={3000}
           onChange={updateRange}
-          value={range} className="filter-item"
+          value={range}
+          className="filter-item"
         />
         <TextArea
           tags={tags}
           handleMultiSelector={handleMultiSelector}
-          label={'Tags'} className="filter-item"
+          label={'Tags'}
+          className="filter-item"
         />
         <Button
           className="filter-submit"

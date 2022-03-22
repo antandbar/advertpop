@@ -5,6 +5,7 @@
   border: 0.1px rgb(101, 119, 134) solid;
   border-radius: 5px;
   width: 100px;
+  background-color: aliceblue;
 }
 
 .inputSearch-input:focus{

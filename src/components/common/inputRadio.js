@@ -7,17 +7,19 @@ const InputRadio = ({ className, label, valueObjet, ...props }) => {
       </label>
       <div className="inputRadio-inputs">
         <div className="inputRadio-div-input">
-          <input type="radio" value={true} name="inputRadio" {...props}/>
+          <input type="radio" value={true} name="inputRadio" {...props} />
           {valueObjet.true}
         </div>
         <div className="inputRadio-div-input">
           <input type="radio" value={false} name="inputRadio" {...props} />
           {valueObjet.false}
         </div>
-        <div className="inputRadio-div-input">
-          <input type="radio" value="" name="inputRadio" {...props} />
-          {valueObjet.all}
-        </div>
+        {valueObjet.all && (
+          <div className="inputRadio-div-input">
+            <input type="radio" value="" name="inputRadio" {...props} />
+            {valueObjet.all}
+          </div>
+        )}
       </div>
     </div>
   );

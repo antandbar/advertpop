@@ -1,28 +1,73 @@
-import Page from '../../layout/Page';
-import Photo from '../../common/Photo';
-//import Textarea from '../../common/Textarea';
-import Button from '../../common/Button';
-
-//import './NewTweetPage.css';
-import { useState } from 'react';
-import { createTweet } from '../service';
+import { useState, useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
-
-const MAX_CHARACTERS = 280;
+import Page from '../../layout/Page';
+import Button from '../../common/Button';
+import InputSearch from '../../common/InputSearch';
+import InputRadio from '../../common/InputRadio';
+import TextArea from '../../common/MultiSelector';
+import { getTags } from '../service';
+import InputNumber from '../../common/InputNumber';
+import InputFile from '../../common/InputFile';
+//import './NewTweetPage.css';
 
 const NewAdvertPage = () => {
   const navigate = useNavigate();
   const [content, setContent] = useState('');
   const [error, setError] = useState(null);
   const [createdTweet, setCreatedTweet] = useState(null);
+  const [name, setName] = useState(null);
+  const [isSale, setIsSale] = useState(null);
+  const [multiSector, setMultiselector] = useState(null);
+  const [tags, setTags] = useState([]);
+  const [inputNumber, setInputNumber] = useState(null);
+  const [inputFile, setInputFile] = useState(null);
+
+  useEffect(() => {
+    getTags().then(tags => setTags(tags));
+  }, []);
 
   const handleChange = event => {
     setContent(event.target.value);
   };
 
+  const handleInputName = e => {
+    setName(e.target.value);
+  };
+
+  const handleInputBuySell = e => {
+    setIsSale(e.target.value);
+  };
+
+  const saleObjet = {
+    false: 'compra',
+    true: 'venta',
+  };
+  const handleMultiSelector = e => {
+    let valueMultiSelector = Array.from(
+      e.target.selectedOptions,
+      option => option.value,
+    );
+    setMultiselector(valueMultiSelector);
+  };
+
+  const handleInputNumber = e => {
+    if (e.target.value > 10000) {
+      e.target.value = 10000;
+    }
+    if (e.target.value < 0) {
+      e.target.value = 0;
+    }
+
+    setInputNumber(e.target.value);
+  };
+
+  const handleInputfile = e => {
+    setInputFile(e.target.value);
+  };
+
   const handleSubmit = async event => {
     event.preventDefault();
-/*     try {
+    /*     try {
       const tweet = await createTweet({ content });
       setCreatedTweet(tweet);
       navigate(`/tweets/${createdTweet.id}`);
@@ -30,9 +75,6 @@ const NewAdvertPage = () => {
       setError(error);
     } */
   };
-
-  const characters = `${content.length} / ${MAX_CHARACTERS}`;
-  const buttonDisabled = content.length < 5;
 
   if (createdTweet) {
     return <Navigate to={`/tweets/${createdTweet.id}`} />;
@@ -43,33 +85,42 @@ const NewAdvertPage = () => {
   }
 
   return (
-    <Page title="What are you thinking...">
-      <div className="newTweetPage bordered">
-        <div className="left">
-          <Photo />
-        </div>
-        <div className="right">
-          <form onSubmit={handleSubmit}>
-{/*             <Textarea
-              className="newTweetPage-textarea"
-              placeholder="Hey! What's up!"
-              value={content}
-              onChange={handleChange}
-              maxLength={MAX_CHARACTERS}
-            /> */}
-            <div className="newTweetPage-footer">
-              <span className="newTweetPage-characters">{characters}</span>
-              <Button
-                type="submit"
-                className="newTweetPage-submit"
-                variant="primary"
-                disabled={buttonDisabled}
-              >
-                Let's go!
-              </Button>
-            </div>
-          </form>
-        </div>
+    <Page title="Crear Anuncio">
+      <div className="NewAdvertPage">
+        <form onSubmit={handleSubmit}>
+          <InputSearch
+            onChange={handleInputName}
+            label={'Nombre'}
+          ></InputSearch>
+          <InputRadio
+            onChange={handleInputBuySell}
+            label={'Compra/Venta'}
+            valueObjet={saleObjet}
+          />
+          <TextArea
+            tags={tags}
+            handleMultiSelector={handleMultiSelector}
+            label={'Tags'}
+          />
+          <InputNumber
+            label={'Precio'}
+            defaultValue={0}
+            max={10000}
+            min={0}
+            onChange={handleInputNumber}
+          />
+          <InputFile label={'Foto'} onChange={handleInputfile} />
+          <div className="newTweetPage-footer">
+            <Button
+              type="submit"
+              className="newAdvertPage-submit"
+              variant="primary"
+              //disabled={buttonDisabled}
+            >
+              Crear Anuncio
+            </Button>
+          </div>
+        </form>
       </div>
     </Page>
   );

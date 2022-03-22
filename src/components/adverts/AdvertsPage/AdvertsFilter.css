@@ -1,7 +1,6 @@
 .filter {
     margin-top: 20px;
     margin-bottom: 20px;
-
 }
 
 .filter-title {
@@ -9,9 +8,15 @@
     margin-left: 15px;
 }
 .filter-body {
+    display: flex;
+    flex-direction: row;
     margin-left: 30px; 
 }
+.filter-item {
+    margin-right: 50px;
+}
 .filter-submit {
-    height: 30px;
-    width: 70px;
+    height: 60px;
+    width: 100px;
+    margin-top: 30px; 
 }

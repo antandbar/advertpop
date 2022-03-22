@@ -1,19 +1,25 @@
-const MultiSelector = ({ className, label, tags,handleMultiSelector, ...props }) => {
-
-  
-
+import './MultiSelector.css';
+const MultiSelector = ({
+  className,
+  label,
+  tags,
+  handleMultiSelector,
+  ...props
+}) => {
   return (
     <div className={className}>
-      {/*       <label className="inputRadio-label">
+      <label className="multiselector-label">
         <span>{label}</span>
-      </label> */}
-      <select multiple={true} onChange={handleMultiSelector}>
-        {tags.map(tag => (
-          <option key={tag} value={tag}>
-            {tag}
-          </option>
-        ))}
-      </select>
+      </label>
+      <div>
+        <select multiple={true} onChange={handleMultiSelector} className="multiselector-select">
+          {tags.map(tag => (
+            <option key={tag} value={tag}>
+              {tag}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

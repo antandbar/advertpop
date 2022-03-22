@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Button from '../../common/Button';
-import InputRadio from '../../common/inputRadio';
+import InputRadio from '../../common/InputRadio';
 import InputSearch from '../../common/InputSearch';
 import SliderBar from '../../common/PriceSliderBar';
 import TextArea from '../../common/MultiSelector';
@@ -58,20 +58,24 @@ const AdvertsFilter = ({
         <h4>Filtros</h4>
       </div>
       <div className="filter-body">
-        <InputSearch onChange={handleInputName} label={'Nombre'}></InputSearch>
+        <InputSearch onChange={handleInputName} label={'Nombre'} className="filter-item"></InputSearch>
         <InputRadio
           onChange={handleInputBuySell}
           label={'Compra/Venta'}
-          valueObjet={saleObjet}
+          valueObjet={saleObjet} className="filter-item"
         />
         <SliderBar
           label={'Rango de precios'}
           maxSelected={6000}
           minSelected={3000}
           onChange={updateRange}
-          value={range}
+          value={range} className="filter-item"
         />
-        <TextArea tags={tags} handleMultiSelector={handleMultiSelector} />
+        <TextArea
+          tags={tags}
+          handleMultiSelector={handleMultiSelector}
+          label={'Tags'} className="filter-item"
+        />
         <Button
           className="filter-submit"
           variant="primary"

@@ -29,7 +29,7 @@ export const getAdverts = (name, isSale, range, multiSelector) => {
 
   multiSelector?.forEach(tag => {
     url += `&tags=${tag}`;
-    console.log('hola' + url);
+    //console.log('hola' + url);
   });
 
   return client.get(url);

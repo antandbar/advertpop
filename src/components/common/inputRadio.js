@@ -1,16 +1,23 @@
+import './InputRadio.css';
 const InputRadio = ({ className, label, valueObjet, ...props }) => {
   return (
     <div className={className}>
       <label className="inputRadio-label">
         <span>{label}</span>
       </label>
-      <div>
-        <input type="radio" value={true} name="inputRadio" {...props} />
-        {valueObjet.true}
-        <input type="radio" value={false} name="inputRadio" {...props} />
-        {valueObjet.false}
-        <input type="radio" value="" name="inputRadio" {...props} />
-        {valueObjet.all}
+      <div className="inputRadio-inputs">
+        <div className="inputRadio-div-input">
+          <input type="radio" value={true} name="inputRadio" {...props}/>
+          {valueObjet.true}
+        </div>
+        <div className="inputRadio-div-input">
+          <input type="radio" value={false} name="inputRadio" {...props} />
+          {valueObjet.false}
+        </div>
+        <div className="inputRadio-div-input">
+          <input type="radio" value="" name="inputRadio" {...props} />
+          {valueObjet.all}
+        </div>
       </div>
     </div>
   );

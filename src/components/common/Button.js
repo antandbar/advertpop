@@ -9,8 +9,25 @@ const Button = styled.button`
   border-radius: 9999px;
   border-style: solid;
   border-width: 1px;
-  border-color: ${accentColor};
-  color: ${props => (props.variant === 'primary' ? 'white' : accentColor)};
+  border-color: ${props => {
+    switch (props.variant) {
+      case 'delete':
+        return 'red';
+      default:
+        return accentColor;
+    }
+  }};
+
+  color: ${props => {
+    switch (props.variant) {
+      case 'primary':
+        return 'white';
+      case 'delete':
+        return 'red';
+      default:
+        return accentColor;
+    }
+  }};
   cursor: pointer;
   display: inline-flex;
   font: inherit;

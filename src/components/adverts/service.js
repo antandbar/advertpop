@@ -39,11 +39,12 @@ export const getTags = () => {
   const url = `${advertsBaseUrl}/tags`;
   return client.get(url);
 };
-/* export const getTweet = tweetId => {
-  const url = `${tweetsBaseUrl}/${tweetId}?_expand=user&_embed=likes`;
+export const getAdvert = advertId => {
+  const url = `${advertsBaseUrl}/${advertId}`;
   return client.get(url);
 };
 
+/*
 export const createTweet = tweet => {
   const url = tweetsBaseUrl;
   return client.post(url, tweet);

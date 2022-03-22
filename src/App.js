@@ -5,6 +5,7 @@ import { AuthContextProvider } from './components/auth/context';
 import Layout from './components/layout/Layout';
 import AdvertsPage from './components/adverts/AdvertsPage/AdvertsPage';
 import RequireAuth from './components/auth/RequireAuth';
+import AdvertPage from './components/adverts/AdvertPage/AdvertPage';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -28,6 +29,14 @@ function App({ isInitiallyLogged }) {
               element={
                 <RequireAuth>
                   <AdvertsPage />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path=":advertId"
+              element={
+                <RequireAuth>
+                  <AdvertPage />
                 </RequireAuth>
               }
             />

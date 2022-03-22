@@ -4,6 +4,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Page from '../../layout/Page';
 import Advert from '../AdvertsPage/Advert';
 import { getAdvert } from '../service';
+import './AdvertPage.css';
+import Confirmation from '../../common/Confirmation';
 
 const AdvertPage = () => {
   const [advert, setAdvert] = useState(null);
@@ -20,8 +22,11 @@ const AdvertPage = () => {
 
   return (
     <Page title="Detalle del anuncio">
-      <Advert {...advert} /> 
-      <Button variant="delete"> Eliminar </Button>
+      <Advert {...advert} />
+      <div className="advertPage-div-button">
+        <Button variant="delete"> Eliminar </Button>
+        <Confirmation label={"Está seguro de elminar el anuncio?"}/>
+      </div>
     </Page>
   );
 };

@@ -1,7 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import classNames from 'classnames';
+import './Header.css';
 
-/* import { ReactComponent as Icon } from '../../assets/twitter.svg'; */
+import logo from '../../assets/logo-wallapop.jpeg';
 
 import './Header.css';
 import AuthButton from '../auth/AuthButton';
@@ -10,26 +11,27 @@ function Header({ className }) {
   return (
     <header className={classNames('header', className)}>
       <Link to="/">
-        <div className="header-logo">
-          {/* <img src={logo} alt="Twitter-React"></img> */}
-          {/* <Icon width="32" height="32" /> */}
-        </div>
+        <img src={logo} className="header-logo" alt="logo-advertpop"></img>
       </Link>
       <nav className="header-nav">
         <NavLink
-          to="/tweets/new"
-          // className={({ isActive }) => (isActive ? 'active' : '')}
-          style={({ isActive }) => (isActive ? { color: 'green' } : null)}
+          to="/adverts/new"
+          className={classNames(
+            ({ isActive }) => (isActive ? 'active' : ''),
+            'header-navLink',
+          )}
         >
-          New Tweet
+          Nuevo Anuncio
         </NavLink>
         <NavLink
-          to="/tweets"
-          // className={({ isActive }) => (isActive ? 'active' : '')}
-          style={({ isActive }) => (isActive ? { color: 'green' } : null)}
+          to="/adverts"
+          className={classNames(
+            ({ isActive }) => (isActive ? 'active' : ''),
+            'header-navLink',
+          )}
           end
         >
-          See all tweets
+          Todos los anuncios
         </NavLink>
         <AuthButton className="header-button" />
       </nav>

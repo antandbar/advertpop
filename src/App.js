@@ -6,6 +6,7 @@ import Layout from './components/layout/Layout';
 import AdvertsPage from './components/adverts/AdvertsPage/AdvertsPage';
 import RequireAuth from './components/auth/RequireAuth';
 import AdvertPage from './components/adverts/AdvertPage/AdvertPage';
+import NewAdvertPage from './components/adverts/NewAdvertPage/NewAdvertPage';
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -37,6 +38,14 @@ function App({ isInitiallyLogged }) {
               element={
                 <RequireAuth>
                   <AdvertPage />
+                </RequireAuth>
+              }
+            />
+                        <Route
+              path="/adverts/new"
+              element={
+                <RequireAuth>
+                  <NewAdvertPage/>
                 </RequireAuth>
               }
             />

@@ -47,10 +47,9 @@ export const getAdvert = advertId => {
 export const deleteAdvert = advertId => {
   const url = `${advertsBaseUrl}/${advertId}`;
   return client.delete(url);
-}; 
+};
 
-/*
-export const createTweet = tweet => {
-  const url = tweetsBaseUrl;
-  return client.post(url, tweet);
-}; */
+export const createAdvert = advert => {
+  const url = advertsBaseUrl;
+  return client.post(url, advert);
+};

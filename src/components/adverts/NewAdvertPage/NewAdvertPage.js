@@ -1,34 +1,27 @@
 import { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Page from '../../layout/Page';
 import Button from '../../common/Button';
 import InputSearch from '../../common/InputSearch';
 import InputRadio from '../../common/InputRadio';
 import TextArea from '../../common/MultiSelector';
-import { getTags } from '../service';
+import { createAdvert, getTags } from '../service';
 import InputNumber from '../../common/InputNumber';
 import InputFile from '../../common/InputFile';
 //import './NewTweetPage.css';
 
 const NewAdvertPage = () => {
   const navigate = useNavigate();
-  const [content, setContent] = useState('');
-  const [error, setError] = useState(null);
-  const [createdTweet, setCreatedTweet] = useState(null);
   const [name, setName] = useState(null);
   const [isSale, setIsSale] = useState(null);
   const [multiSector, setMultiselector] = useState(null);
   const [tags, setTags] = useState([]);
-  const [inputNumber, setInputNumber] = useState(null);
+  const [price, setPrice] = useState(null);
   const [inputFile, setInputFile] = useState(null);
 
   useEffect(() => {
     getTags().then(tags => setTags(tags));
   }, []);
-
-  const handleChange = event => {
-    setContent(event.target.value);
-  };
 
   const handleInputName = e => {
     setName(e.target.value);
@@ -58,31 +51,30 @@ const NewAdvertPage = () => {
       e.target.value = 0;
     }
 
-    setInputNumber(e.target.value);
+    setPrice(e.target.value);
   };
 
   const handleInputfile = e => {
-    setInputFile(e.target.value);
+    setInputFile(e.target.files[0]);
   };
 
+  const advertFormData = () => {
+    const advertFormData = new FormData();
+    advertFormData.append('name', name);
+    advertFormData.append('sale', isSale);
+    advertFormData.append('price', price);
+    advertFormData.append('tags', multiSector);
+    if (inputFile) advertFormData.append('photo', inputFile);
+    return advertFormData;
+  };
   const handleSubmit = async event => {
     event.preventDefault();
-    /*     try {
-      const tweet = await createTweet({ content });
-      setCreatedTweet(tweet);
-      navigate(`/tweets/${createdTweet.id}`);
-    } catch (error) {
-      setError(error);
-    } */
+
+    createAdvert(advertFormData()).then(advertResp => {
+      let advert = advertResp;
+      navigate(`/adverts/${advert.id}`);
+    });
   };
-
-  if (createdTweet) {
-    return <Navigate to={`/tweets/${createdTweet.id}`} />;
-  }
-
-  if (error?.status === 401) {
-    return <Navigate to="/login" />;
-  }
 
   return (
     <Page title="Crear Anuncio">
@@ -91,23 +83,26 @@ const NewAdvertPage = () => {
           <InputSearch
             onChange={handleInputName}
             label={'Nombre'}
+            required
           ></InputSearch>
           <InputRadio
             onChange={handleInputBuySell}
             label={'Compra/Venta'}
             valueObjet={saleObjet}
+            required
           />
           <TextArea
             tags={tags}
             handleMultiSelector={handleMultiSelector}
             label={'Tags'}
+            required
           />
           <InputNumber
-            label={'Precio'}
-            defaultValue={0}
+            label={'Precio(€)'}
             max={10000}
             min={0}
             onChange={handleInputNumber}
+            required
           />
           <InputFile label={'Foto'} onChange={handleInputfile} />
           <div className="newTweetPage-footer">

@@ -12,7 +12,12 @@ const MultiSelector = ({
         <span>{label}</span>
       </label>
       <div>
-        <select multiple={true} onChange={handleMultiSelector} className="multiselector-select">
+        <select
+          multiple={true}
+          onChange={handleMultiSelector}
+          className="multiselector-select"
+          {...props}
+        >
           {tags.map(tag => (
             <option key={tag} value={tag}>
               {tag}

@@ -2,7 +2,7 @@ import client from '../../api/client';
 
 const advertsBaseUrl = '/api/v1/adverts';
 
-export const getAdverts = (name, isSale, range, multiSelector) => {
+const transformRange = range => {
   let rangeMin, rangeMax;
   if (range) {
     if (range[0] > range[1]) {
@@ -20,16 +20,23 @@ export const getAdverts = (name, isSale, range, multiSelector) => {
     rangeMin = 0;
   }
 
+  return {
+    rangeMax,
+    rangeMin,
+  };
+};
+
+export const getAdverts = (name, isSale, range, multiSelector) => {
+  const rangeObj = transformRange(range);
+
   let url = `${advertsBaseUrl}?name=${name}`;
-  //debugger;
+
   if (isSale === 'true' || isSale === 'false') url += `&sale=${isSale}`;
 
-  url += `&price=${rangeMin}&price=${rangeMax}`;
-  //debugger;
+  url += `&price=${rangeObj.rangeMin}&price=${rangeObj.rangeMax}`;
 
   multiSelector?.forEach(tag => {
     url += `&tags=${tag}`;
-    //console.log('hola' + url);
   });
 
   return client.get(url);

@@ -86,7 +86,6 @@ const AdvertsFilter = ({
         <Button
           className="filter-submit"
           variant="primary"
-          /* disabled={!email || !password || isLoading} */
           onClick={sendFilters}
         >
           Filtrar

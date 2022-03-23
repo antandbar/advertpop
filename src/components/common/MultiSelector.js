@@ -19,7 +19,7 @@ const MultiSelector = ({
           {...props}
         >
           {tags.map(tag => (
-            <option key={tag} value={tag}>
+            <option key={tag} value={tag} className="multiselector-option">
               {tag}
             </option>
           ))}

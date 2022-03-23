@@ -8,7 +8,7 @@ import TextArea from '../../common/MultiSelector';
 import { createAdvert, getTags } from '../service';
 import InputNumber from '../../common/InputNumber';
 import InputFile from '../../common/InputFile';
-//import './NewTweetPage.css';
+import './NewAdvertPage.css';
 
 const NewAdvertPage = () => {
   const navigate = useNavigate();
@@ -78,38 +78,39 @@ const NewAdvertPage = () => {
 
   return (
     <Page title="Crear Anuncio">
-      <div className="NewAdvertPage">
+      
         <form onSubmit={handleSubmit}>
+        <div className="newAdvertPage-form">
           <InputSearch
             onChange={handleInputName}
             label={'Nombre'}
-            required
+            required className={"newAdvertPage-components"}
           ></InputSearch>
           <InputRadio
             onChange={handleInputBuySell}
             label={'Compra/Venta'}
             valueObjet={saleObjet}
-            required
+            required className={"newAdvertPage-components"}
           />
           <TextArea
             tags={tags}
             handleMultiSelector={handleMultiSelector}
             label={'Tags'}
-            required
+            required className={"newAdvertPage-components"}
           />
           <InputNumber
             label={'Precio(€)'}
             max={10000}
             min={0}
             onChange={handleInputNumber}
-            required
+            required className={"newAdvertPage-components"}
           />
-          <InputFile label={'Foto'} onChange={handleInputfile} />
-          <div className="newTweetPage-footer">
+          <InputFile label={'Foto'} onChange={handleInputfile} className={"newAdvertPage-components newAdvertPage-photo"}/>
+          </div>
             <Button
               type="submit"
               className="newAdvertPage-submit"
-              variant="primary"
+              variant="primary" 
               disabled={
                 !name ||
                 !price ||
@@ -120,9 +121,9 @@ const NewAdvertPage = () => {
             >
               Crear Anuncio
             </Button>
-          </div>
+          
         </form>
-      </div>
+      
     </Page>
   );
 };

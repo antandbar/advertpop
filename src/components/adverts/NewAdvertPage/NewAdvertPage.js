@@ -14,7 +14,7 @@ const NewAdvertPage = () => {
   const navigate = useNavigate();
   const [name, setName] = useState(null);
   const [isSale, setIsSale] = useState(null);
-  const [multiSector, setMultiselector] = useState(null);
+  const [multiSelector, setMultiselector] = useState(null);
   const [tags, setTags] = useState([]);
   const [price, setPrice] = useState(null);
   const [inputFile, setInputFile] = useState(null);
@@ -63,7 +63,7 @@ const NewAdvertPage = () => {
     advertFormData.append('name', name);
     advertFormData.append('sale', isSale);
     advertFormData.append('price', price);
-    advertFormData.append('tags', multiSector);
+    advertFormData.append('tags', multiSelector);
     if (inputFile) advertFormData.append('photo', inputFile);
     return advertFormData;
   };
@@ -110,7 +110,13 @@ const NewAdvertPage = () => {
               type="submit"
               className="newAdvertPage-submit"
               variant="primary"
-              //disabled={buttonDisabled}
+              disabled={
+                !name ||
+                !price ||
+                isSale === null ||
+                multiSelector === null ||
+                multiSelector?.length === 0
+              }
             >
               Crear Anuncio
             </Button>

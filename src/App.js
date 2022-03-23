@@ -7,6 +7,8 @@ import AdvertsPage from './components/adverts/AdvertsPage/AdvertsPage';
 import RequireAuth from './components/auth/RequireAuth';
 import AdvertPage from './components/adverts/AdvertPage/AdvertPage';
 import NewAdvertPage from './components/adverts/NewAdvertPage/NewAdvertPage';
+import Error404 from './components/error/Error404';
+
 
 function App({ isInitiallyLogged }) {
   const [isLogged, setIsLogged] = useState(isInitiallyLogged);
@@ -52,7 +54,7 @@ function App({ isInitiallyLogged }) {
           </Route>
 
           <Route path="/" element={<Navigate to="/adverts" />} />
-          <Route path="/404" element={<div>404 | Not Found Page</div>} />
+          <Route path="/404" element={<RequireAuth><Error404/></RequireAuth>} />
           <Route path="*" element={<Navigate to="/404" />} />
         </Routes>
       </AuthContextProvider>

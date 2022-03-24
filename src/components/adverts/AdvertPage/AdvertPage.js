@@ -39,7 +39,7 @@ const AdvertPage = () => {
   };
   return (
     <Page title="Detalle del anuncio">
-      <Advert {...advert} />
+      <Advert {...advert} isPhoto={true}/>
       <div className="advertPage-div-button">
       {!isDelete && 
         <Button variant="delete" onClick={handleDeleteAdvert}>

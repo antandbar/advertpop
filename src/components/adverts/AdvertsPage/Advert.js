@@ -2,14 +2,15 @@ import React from 'react';
 import Photo from '../../common/Photo';
 import './Advert.css';
 
-const Advert = ({ name, sale, price, tags, photo }) => {
+const Advert = ({ name, sale, price, tags, photo, isPhoto }) => {
   return (
     <article className="advert bordered">
-   
+      {isPhoto && (
         <div className="left">
           <Photo className="advert-photo" photo={photo} />
         </div>
-      
+      )}
+
       <div>
         <div className="advert-content">
           <span> El artículo </span>

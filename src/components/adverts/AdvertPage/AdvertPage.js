@@ -9,17 +9,17 @@ import Confirmation from '../../common/Confirmation';
 
 const AdvertPage = () => {
   const [advert, setAdvert] = useState(null);
-  const { advertId } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
-    getAdvert(advertId)
+    getAdvert(id)
       .then(advert => setAdvert(advert))
       .catch(() => {
         navigate('/404');
       });
-  }, [advertId, navigate]);
+  }, [id, navigate]);
 
   const handleDeleteAdvert = e => {
     e.preventDefault();
@@ -33,7 +33,7 @@ const AdvertPage = () => {
 
   const handleConfirmationDelete = e => {
     e.preventDefault();
-    deleteAdvert(advertId);
+    deleteAdvert(id);
     navigate('/adverts')
 
   };

@@ -21,7 +21,7 @@ const AdvertsPage = () => {
   const [nameFilter, setNameFilter] = useState('');
   const [isSaleFilter, setIsSaleFilter] = useState('');
   const [rangeFilter, setRangeFilter] = useState('');
-  const [isFilter, setIsFilter] = useState('all');
+  const [isFilter, setIsFilter] = useState(true);
   const [multiSelectorFilter, setMultiSelectorFilter] = useState([]);
 
   const changeNameFilter = name => {
@@ -37,20 +37,21 @@ const AdvertsPage = () => {
     setMultiSelectorFilter(multiSelector);
   };
   const sendAllFilters = () => {
-    query();
+    getAdverts(nameFilter, isSaleFilter, rangeFilter, multiSelectorFilter).then(
+      adverts => setAdverts(adverts),
+    );
     setIsFilter(true);
   };
 
   useEffect(() => {
-    query();
+    getAdverts(nameFilter, isSaleFilter, rangeFilter, multiSelectorFilter).then(
+      adverts => {
+        setAdverts(adverts);
+        if (adverts.length === 0) setIsFilter(false);
+      },
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const query = () => {
-    getAdverts(nameFilter, isSaleFilter, rangeFilter, multiSelectorFilter).then(
-      adverts => setAdverts(adverts),
-    );
-  };
 
   return (
     <Page title="Anuncios">

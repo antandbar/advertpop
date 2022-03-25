@@ -14,6 +14,7 @@ const AdvertPage = () => {
   const [isDelete, setIsDelete] = useState(false);
 
   useEffect(() => {
+    // se busca anuncio, si no se encuentra manda a 404
     getAdvert(id)
       .then(advert => setAdvert(advert))
       .catch(() => {
@@ -30,25 +31,28 @@ const AdvertPage = () => {
     e.preventDefault();
     setIsDelete(false);
   };
-
+  // Al eliminar el anuncio manda index
   const handleConfirmationDelete = e => {
     e.preventDefault();
     deleteAdvert(id);
-    navigate('/adverts')
-
+    navigate('/adverts');
   };
   return (
     <Page title="Detalle del anuncio">
-      <Advert {...advert} isPhoto={true}/>
+      <Advert {...advert} isPhoto={true} />
       <div className="advertPage-div-button">
-      {!isDelete && 
-        <Button variant="delete" onClick={handleDeleteAdvert}>
-          Eliminar
-        </Button>
-}
-        {isDelete && 
-          <Confirmation label={'Está seguro de elminar el anuncio?'} handleConfirmation={handleConfirmationDelete}  handleCancellation={handleCancellationDelete}/>
-        }
+        {!isDelete && (
+          <Button variant="delete" onClick={handleDeleteAdvert}>
+            Eliminar
+          </Button>
+        )}
+        {isDelete && (
+          <Confirmation
+            label={'Está seguro de elminar el anuncio?'}
+            handleConfirmation={handleConfirmationDelete}
+            handleCancellation={handleCancellationDelete}
+          />
+        )}
       </div>
     </Page>
   );

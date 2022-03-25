@@ -1,4 +1,3 @@
-
 .inputSearch-input {
   margin-left: 8px;
   margin-top: 10px;
@@ -8,6 +7,6 @@
   background-color: aliceblue;
 }
 
-.inputSearch-input:focus{
-    outline: none;
-  }
+.inputSearch-input:focus {
+  outline: none;
+}

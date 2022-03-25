@@ -1,4 +1,3 @@
-
 import './InputNumber.css';
 
 const InputNumber = ({ className, label, ...props }) => {
@@ -7,10 +6,7 @@ const InputNumber = ({ className, label, ...props }) => {
       <label className="InputNumber-label">
         <span>{label}</span>
         <div>
-            
-        <input type={"number"} className='InputNumber-input '
-           {...props} 
-        />
+          <input type={'number'} className="InputNumber-input " {...props} />
         </div>
       </label>
     </div>

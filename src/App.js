@@ -22,7 +22,9 @@ function App({ isInitiallyLogged }) {
 
   return (
     <div className="App">
+      {/* se utiliza el context */}
       <AuthContextProvider value={{ isLogged, handleLogin, handleLogout }}>
+        {/* desde Routes se utiliza el loyout */}
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/adverts" element={<Layout />}>

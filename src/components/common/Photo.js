@@ -7,7 +7,7 @@ const Photo = ({ className, photo, ...props }) => (
   <img
     className={classNames('photo', className)}
     src={photo?photo:defaultPhoto}
-    alt=""
+    alt="advertphoto"
     {...props}
   />
 );

@@ -36,6 +36,7 @@ const NewAdvertPage = () => {
     true: 'venta',
   };
   const handleMultiSelector = e => {
+    // permite la multiselección
     let valueMultiSelector = Array.from(
       e.target.selectedOptions,
       option => option.value,
@@ -78,52 +79,57 @@ const NewAdvertPage = () => {
 
   return (
     <Page title="Crear Anuncio">
-      
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="newAdvertPage-form">
           <InputSearch
             onChange={handleInputName}
             label={'Nombre'}
-            required className={"newAdvertPage-components"}
+            required
+            className={'newAdvertPage-components'}
           ></InputSearch>
           <InputRadio
             onChange={handleInputBuySell}
             label={'Compra/Venta'}
             valueObjet={saleObjet}
-            required className={"newAdvertPage-components"}
+            required
+            className={'newAdvertPage-components'}
           />
           <TextArea
             tags={tags}
             handleMultiSelector={handleMultiSelector}
             label={'Tags'}
-            required className={"newAdvertPage-components"}
+            required
+            className={'newAdvertPage-components'}
           />
           <InputNumber
             label={'Precio(€)'}
             max={10000}
             min={0}
             onChange={handleInputNumber}
-            required className={"newAdvertPage-components"}
+            required
+            className={'newAdvertPage-components'}
           />
-          <InputFile label={'Foto'} onChange={handleInputfile} className={"newAdvertPage-components newAdvertPage-photo"}/>
-          </div>
-            <Button
-              type="submit"
-              className="newAdvertPage-submit"
-              variant="primary" 
-              disabled={
-                !name ||
-                !price ||
-                isSale === null ||
-                multiSelector === null ||
-                multiSelector?.length === 0
-              }
-            >
-              Crear Anuncio
-            </Button>
-          
-        </form>
-      
+          <InputFile
+            label={'Foto'}
+            onChange={handleInputfile}
+            className={'newAdvertPage-components newAdvertPage-photo'}
+          />
+        </div>
+        <Button
+          type="submit"
+          className="newAdvertPage-submit"
+          variant="primary"
+          disabled={
+            !name ||
+            !price ||
+            isSale === null ||
+            multiSelector === null ||
+            multiSelector?.length === 0
+          }
+        >
+          Crear Anuncio
+        </Button>
+      </form>
     </Page>
   );
 };

@@ -9,10 +9,12 @@ import AuthButton from '../auth/AuthButton';
 
 function Header({ className }) {
   return (
+    /* imagen corporativa */
     <header className={classNames('header', className)}>
       <Link to="/">
         <img src={logo} className="header-logo" alt="logo-advertpop"></img>
       </Link>
+      {/* links a crear anuncio y todos los anuncios */}
       <nav className="header-nav">
         <NavLink
           to="/adverts/new"
@@ -33,6 +35,7 @@ function Header({ className }) {
         >
           Todos los anuncios
         </NavLink>
+        {/* botón para ir a login/logout */}
         <AuthButton className="header-button" />
       </nav>
     </header>

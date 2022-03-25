@@ -18,6 +18,7 @@ const MultiSelector = ({
           className="multiselector-select"
           {...props}
         >
+          {/* recibe los datos de manera dinámica */}
           {tags.map(tag => (
             <option key={tag} value={tag} className="multiselector-option">
               {tag}

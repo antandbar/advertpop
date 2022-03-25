@@ -6,10 +6,7 @@ const InputFile = ({ className, label, ...props }) => {
       <label className="InputFile-label">
         <span>{label}</span>
         <div>
-            
-        <input type={"file"} className='InputFile-input '
-           {...props} 
-        />
+          <input type={'file'} className="InputFile-input " {...props} />
         </div>
       </label>
     </div>

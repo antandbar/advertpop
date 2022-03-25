@@ -1,7 +1,7 @@
 import client from '../../api/client';
 
 const advertsBaseUrl = '/api/v1/adverts';
-
+// el rango menor siempre es min y mayor max
 const transformRange = range => {
   let rangeMin, rangeMax;
   if (range) {

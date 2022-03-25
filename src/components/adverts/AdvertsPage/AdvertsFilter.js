@@ -7,6 +7,7 @@ import TextArea from '../../common/MultiSelector';
 import { getTags } from '../service';
 import './AdvertsFilter.css';
 
+// maneja como un wraper los filtros
 const AdvertsFilter = ({
   changeNameFilter,
   sendAllFilters,

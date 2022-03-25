@@ -1,3 +1,4 @@
+// se maneja el storage del navegador
 const storage = {
   get(key) {
     const value = localStorage.getItem(key);

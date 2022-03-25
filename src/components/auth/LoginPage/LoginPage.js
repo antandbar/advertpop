@@ -29,6 +29,7 @@ function LoginPage() {
   const handleChange = event => {
     setCredentials(credentials => ({
       ...credentials,
+      // si es Chekbox se toma checked, si no es así value
       [event.target.name]:
         event.target.type === 'checkbox'
           ? event.target.checked

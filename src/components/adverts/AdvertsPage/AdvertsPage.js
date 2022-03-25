@@ -5,8 +5,8 @@ import { getAdverts } from '../service';
 import Advert from './Advert';
 import AdvertsFilter from './AdvertsFilter';
 import Page from '../../layout/Page';
-import './AdvertsPage.css';
 
+// En caso de no haber anuncios
 const EmptyList = () => (
   <div style={{ textAlign: 'center' }}>
     <p>Crea tu primer anuncio!</p>

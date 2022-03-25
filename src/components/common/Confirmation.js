@@ -1,7 +1,7 @@
 import Button from './Button';
 import './Confirmation.css';
 import classNames from 'classnames';
-
+// maneja la cofrimación antes de realizar una acción
 const Confirmation = ({
   className,
   label,

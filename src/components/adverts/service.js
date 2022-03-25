@@ -28,13 +28,9 @@ const transformRange = range => {
 
 export const getAdverts = (name, isSale, range, multiSelector) => {
   const rangeObj = transformRange(range);
-  
+
   let url = `${advertsBaseUrl}`;
-  if (name) {
-    url += `?name=${name}`;
-  } else {
-    url += `?name=`;
-  }
+  name ? (url += `?name=${name}`) : (url += `?name=`);
 
   if (isSale && (isSale === 'true' || isSale === 'false'))
     url += `&sale=${isSale}`;

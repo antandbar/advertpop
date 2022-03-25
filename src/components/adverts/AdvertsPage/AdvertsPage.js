@@ -44,13 +44,12 @@ const AdvertsPage = () => {
   };
 
   useEffect(() => {
-    getAdverts(nameFilter, isSaleFilter, rangeFilter, multiSelectorFilter).then(
+    getAdverts().then(
       adverts => {
         setAdverts(adverts);
         if (adverts.length === 0) setIsFilter(false);
       },
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

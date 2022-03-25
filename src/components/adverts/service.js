@@ -28,16 +28,24 @@ const transformRange = range => {
 
 export const getAdverts = (name, isSale, range, multiSelector) => {
   const rangeObj = transformRange(range);
+  
+  let url = `${advertsBaseUrl}`;
+  if (name) {
+    url += `?name=${name}`;
+  } else {
+    url += `?name=`;
+  }
 
-  let url = `${advertsBaseUrl}?name=${name}`;
+  if (isSale && (isSale === 'true' || isSale === 'false'))
+    url += `&sale=${isSale}`;
 
-  if (isSale === 'true' || isSale === 'false') url += `&sale=${isSale}`;
+  if (rangeObj) url += `&price=${rangeObj.rangeMin}&price=${rangeObj.rangeMax}`;
 
-  url += `&price=${rangeObj.rangeMin}&price=${rangeObj.rangeMax}`;
-
-  multiSelector?.forEach(tag => {
-    url += `&tags=${tag}`;
-  });
+  if (multiSelector) {
+    multiSelector?.forEach(tag => {
+      url += `&tags=${tag}`;
+    });
+  }
 
   return client.get(url);
 };

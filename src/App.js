@@ -27,31 +27,17 @@ function App({ isInitiallyLogged }) {
         {/* desde Routes se utiliza el loyout */}
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/adverts" element={<Layout />}>
-            <Route
-              index
-              element={
-                <RequireAuth>
-                  <AdvertsPage />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path=":id"
-              element={
-                <RequireAuth>
-                  <AdvertPage />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/adverts/new"
-              element={
-                <RequireAuth>
-                  <NewAdvertPage />
-                </RequireAuth>
-              }
-            />
+          <Route
+            path="/adverts"
+            element={
+              <RequireAuth>
+                <Layout />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<AdvertsPage />} />
+            <Route path=":id" element={<AdvertPage />} />
+            <Route path="/adverts/new" element={<NewAdvertPage />} />
           </Route>
 
           <Route path="/" element={<Navigate to="/adverts" />} />

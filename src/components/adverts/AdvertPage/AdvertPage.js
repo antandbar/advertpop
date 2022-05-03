@@ -32,9 +32,9 @@ const AdvertPage = () => {
     setIsDelete(false);
   };
   // Al eliminar el anuncio manda index
-  const handleConfirmationDelete = e => {
+  const handleConfirmationDelete = async e => {
     e.preventDefault();
-    deleteAdvert(id);
+    await deleteAdvert(id);
     navigate('/adverts');
   };
   return (

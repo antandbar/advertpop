@@ -86,6 +86,7 @@ const NewAdvertPage = () => {
             label={'Nombre'}
             required
             className={'newAdvertPage-components'}
+            value={name}
           ></InputSearch>
           <InputRadio
             onChange={handleInputBuySell}
@@ -93,6 +94,7 @@ const NewAdvertPage = () => {
             valueObjet={saleObjet}
             required
             className={'newAdvertPage-components'}
+            valur={isSale}
           />
           <TextArea
             tags={tags}
@@ -100,6 +102,7 @@ const NewAdvertPage = () => {
             label={'Tags'}
             required
             className={'newAdvertPage-components'}
+            value={multiSelector}
           />
           <InputNumber
             label={'Precio(€)'}
